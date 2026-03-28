@@ -1,0 +1,105 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(13,13,13,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  height: 64px;
+}
+
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.logo-icon { font-size: 16px; }
+
+.nav-links {
+  display: flex;
+  gap: 24px;
+  flex: 1;
+}
+
+.nav-link {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 500;
+  transition: color var(--transition);
+}
+.nav-link:hover { color: var(--text); }
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-left: auto;
+}
+
+.nav-cart {
+  position: relative;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  transition: color var(--transition);
+}
+.nav-cart:hover { color: var(--accent); }
+.nav-cart .badge {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  font-size: 10px;
+}
+
+.user-avatar {
+  width: 34px; height: 34px;
+  background: var(--accent);
+  color: #0d0d0d;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.nav-user { position: relative; }
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  min-width: 180px;
+  padding: 8px 0;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+}
+.dropdown-name  { padding: 8px 16px 2px; font-weight: 600; font-size: 14px; }
+.dropdown-email { padding: 0 16px 8px;   color: var(--muted); font-size: 12px; }
+.dropdown-divider { border: none; border-top: 1px solid var(--border); margin: 4px 0; }
+.dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 8px 16px;
+  background: none;
+  color: var(--danger);
+  font-size: 14px;
+  text-align: left;
+  transition: background var(--transition);
+}
+.dropdown-item:hover { background: rgba(224,92,92,0.08); }

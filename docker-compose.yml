@@ -1,0 +1,55 @@
+version: "3.9"
+
+services:
+  mongo:
+    image: mongo:7
+    container_name: shopapp_mongo
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: secret
+      MONGO_INITDB_DATABASE: shopapp
+    volumes:
+      - mongo_data:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - shopnet
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: shopapp_backend
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 5000
+      MONGO_URI: mongodb://admin:secret@mongo:27017/shopapp?authSource=admin
+      JWT_SECRET: supersecretjwtkey123
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongo
+    networks:
+      - shopnet
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: shopapp_frontend
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - shopnet
+
+volumes:
+  mongo_data:
+
+networks:
+  shopnet:
+    driver: bridge
