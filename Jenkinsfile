@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    parameters{
+        choice (name: 'Version', choices: ['1.0','1.1','1.2'], description: 'Select Versions')
+        booleanParam (name: 'ExecuteTests', defaultValue: true, description: '')
+    }
     stages{
 
         stage("Build"){
